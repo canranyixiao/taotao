@@ -36,7 +36,7 @@ public class CustomerController {
      * &custSource=${dataMap.custSource}
      * &custIndustry=${dataMap.custIndustry}
      * &custLevel=${dataMap.custLevel}
-     *
+     *ssh://git@192.168.37.161:22/home/git/taotao.git/
      * */
 
     @Autowired
