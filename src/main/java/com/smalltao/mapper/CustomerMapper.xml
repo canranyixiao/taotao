@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.smalltao.mapper.CustomerMapper">
+
+<!--
+
+    &lt;!&ndash;addUser&ndash;&gt;
+    <select id="getTotal" parameterType="map" resultType="int">
+
+        SELECT COUNT(*) FROM customer
+        <include refid="CustomerSQLCount" />
+    </select>
+    <select id="getlist" parameterType="map" resultType="Customer">
+      SELECT
+            c.cust_id,
+            c.cust_name,
+            bd2.dict_item_name as cust_source,
+            bd1.dict_item_name as cust_industry,
+            bd3.dict_item_name as cust_level,
+            c.cust_phone,
+            c.cust_mobile
+        FROM customer c
+            LEFT JOIN
+              base_dict bd2
+            ON
+              c.cust_source=bd2.dict_id
+            LEFT JOIN
+              base_dict bd1
+            ON
+              c.cust_industry=bd1.dict_id
+            LEFT JOIN
+              base_dict bd3
+            ON
+              c.cust_level=bd3.dict_id
+        <include refid="CustomerSQL" />
+        LIMIT #{start},#{size}
+    </select>
+
+    &lt;!&ndash;SQL片段&ndash;&gt;
+    <sql id="CustomerSQL">
+        WHERE
+            bd2.dict_type_code='002'
+            AND
+            bd1.dict_type_code='001'
+            AND
+            bd3.dict_type_code='006'
+        <if test="custName!=null and custName!=''">
+            AND cust_name LIKE CONCAT('%',#{custName},'%')
+        </if>
+        <if test="custSource!=null and custSource!=''">
+            AND cust_source=#{custSource}
+        </if>
+        <if test="custIndustry!=null and custIndustry!=''">
+            AND cust_industry=#{custIndustry}
+        </if>
+        <if test="custLevel!=null and custLevel!=''">
+            AND cust_level=#{custLevel}
+        </if>
+    </sql>
+
+
+    &lt;!&ndash;SQL片段&ndash;&gt;
+    <sql id="CustomerSQLCount">
+        <where>
+            <if test="custName!=null and custName!=''">
+                AND cust_name LIKE CONCAT('%',#{custName},'%')
+            </if>
+            <if test="custSource!=null and custSource!=''">
+                AND cust_source=#{custSource}
+            </if>
+            <if test="custIndustry!=null and custIndustry!=''">
+                AND cust_industry=#{custIndustry}
+            </if>
+            <if test="custLevel!=null and custLevel!=''">
+                AND cust_level=#{custLevel}
+            </if>
+        </where>
+    </sql>
+
+
+    <select id="findById" parameterType="int" resultType="Customer">
+      SELECT * FROM customer WHERE cust_id=#{id}
+    </select>
+
+    <update id="update" parameterType="Customer" >
+      UPDATE customer
+      <set>
+            <if test="cust_name!=null">
+              cust_name=#{cust_name}
+            </if>
+
+      </set>
+        WHERE cust_id=#{cust_id}
+    </update>
+
+
+    <delete id="delete" parameterType="int">
+            DELETE FROM customer WHERE cust_id=#{cust_id}
+    </delete>
+-->
+
+</mapper>
